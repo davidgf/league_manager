@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @league.name %>
+</p>
+
+<%= render :partial => "team", :collection => @league.teams %>
+
+<h1>Rounds</h1>
+
+<div>
+    <%= @league.print_rounds %>
+</div>
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>
