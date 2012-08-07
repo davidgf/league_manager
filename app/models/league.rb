@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
   attr_accessible :teams_attributes
   validates_presence_of :name
   validate :validate_teams_length
+  validate :validate_rounds_length
 
   has_many :teams
   has_many :rounds
@@ -29,7 +30,7 @@ class League < ActiveRecord::Base
 
     for i in (0..num_rounds)
       matches_home = Round.new(:number => i)
-      matches_away = Round.new(:number => i+rounds_add)
+      matches_away = Round.new(:number => i+num_rounds+1)
       for j in (0..num_matches)
         matches_home.matches << Match.new(:home => clubs[j], :away => clubs[num_rounds - j + 1]) #Home match
         matches_away.matches << Match.new(:home => clubs[num_rounds - j + 1], :away => clubs[j]) #Away match 
@@ -61,5 +62,9 @@ end
 private
   def validate_teams_length
     errors.add(:teams, "The minimum number of teams is two") if teams.length < 2
+  end
+  
+  def validate_rounds_length
+    errors.add(:rounds, "The minimum number of rounds is two") if rounds.length < 2
   end
 end

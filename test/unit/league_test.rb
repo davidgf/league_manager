@@ -7,12 +7,13 @@ class LeagueTest < ActiveSupport::TestCase
   
   test "should save with name and two teams" do
     l = League.new
-    assert !l.save, 'Name missing'
+    assert !l.save_with_rounds, 'Name missing'
     l.name = 'nome'
-    assert !l.save, 'Teams missing'
+    assert !l.save_with_rounds, 'Teams missing'
     l.teams << teams(:one)
-    assert !l.save, 'Just one team'
+    assert !l.save_with_rounds, 'Just one team'
     l.teams << teams(:two)
-    assert l.save, 'Two teams'
+    assert !l.save_with_rounds, 'Two teams'
+    assert l.rounds.length > 0, 'No rounds'
   end
 end

@@ -43,7 +43,7 @@ class LeaguesController < ApplicationController
     @league = League.new(params[:league])
 
     respond_to do |format|
-      if @league.save
+      if @league.save_with_rounds
         format.html { redirect_to @league, notice: 'League was successfully created.' }
         format.json { render json: @league, status: :created, location: @league }
       else

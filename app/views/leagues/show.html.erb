@@ -10,7 +10,7 @@
 <h1>Rounds</h1>
 
 <div>
-    <%= @league.print_rounds %>
+	<%= render :partial => "round", :collection => @league.rounds %>
 </div>
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>

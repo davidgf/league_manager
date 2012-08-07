@@ -1,0 +1,10 @@
+<div class="round">
+	<h1><%= round.number %></h1>
+	<ul>
+	<% round.matches.each do |match| %>
+		<li>
+			<%= match.home.name %> vs <%= match.away.name %>
+		</li>
+	<% end %>
+	</ul>
+</div>
